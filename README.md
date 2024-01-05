@@ -3,7 +3,7 @@
 ## 1. クローン
 まずは、このリポジトリをクローンしてください。
 ```sh
-$ git clone https://github.com/hiroki-yod/react-jsx-docker-env.git
+$ git clone git@github.com:Scala-partners/reservation-app-for-internship.git
 ```
 
 ## 2. 拡張機能
