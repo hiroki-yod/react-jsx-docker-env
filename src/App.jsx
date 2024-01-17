@@ -1,35 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./css/App.css";
+import { useSelector } from "react-redux";
+import { Link, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Home from "./Home";
+import Mypage from "./Mypage"
+import SignUp from "./SignUp";
+import LogIn from "./LogIn";
+import Facility from "./Facility";
+import ReservationCalendar from "./ReservationCalendar";
+import ReservationInput from "./ReservationInput";
+import ReservationConfirm from "./ReservationConfirm";
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+// eslint-disable-next-line react/prop-types
+function MypageButton({ user }) {
+    if (user) {
+        return (
+            <button>
+                <Link
+                    to={"/mypage"}
+                    state={{ user: user }}
+                    key={"mypage"}
+                >
+                    マイページ
+                </Link>
+            </button>
+        );
+    } else {
+        return (
+            <button>
+                <Link
+                    to={"/log_in"}
+                    key={"log_in"}
+                >
+                    ログイン・新規登録
+                </Link>
+            </button>
+        );
+    }
 }
 
-export default App
+export default function App() {
+    const user = useSelector((state) => state.user.user);
+    return (
+        <div className="App">
+            <header className="App-header">
+                <h2>
+                    <a href="/">スカラ市施設予約サイト</a>
+                    <MypageButton user={user} />
+                </h2>
+                
+            </header>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/mypage" element={<Mypage />} />
+                <Route path="/sign_up" element={<SignUp />} />
+                <Route path="/log_in" element={<LogIn />} />
+                <Route path="/facility" element={<Facility />} />
+                <Route
+                    path="/reservation_calendar"
+                    element={<ReservationCalendar />}
+                />
+                <Route
+                    path="/reservation_input"
+                    element={<ReservationInput />}
+                />
+                <Route
+                    path="/reservation_confirm"
+                    element={<ReservationConfirm />}
+                />
+            </Routes>
+        </div>
+    );
+}
