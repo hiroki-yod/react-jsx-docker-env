@@ -1,32 +1,8 @@
 [
     {
         "id": 1,
-        "name": "河﨑健",
-        "email": "kawasakik@example.com",
-        "password": "qwerty"
-    },
-    {
-        "id": 2,
-        "name": "河﨑晴己",
-        "email": "kawasakih@example.com",
-        "password": "qwerty"
-    },
-    {
-        "id": 3,
-        "name": "菅原和也",
-        "email": "sugawara@example.com",
-        "password": "qwerty"
-    },
-    {
-        "id": 4,
-        "name": "中村友多朗",
-        "email": "nakamura@example.com",
-        "password": "qwerty"
-    },
-    {
-        "id": 5,
-        "name": "余田大輝",
-        "email": "yoda@example.com",
+        "name": "スカラ太郎",
+        "email": "scala@example.com",
         "password": "qwerty"
     }
 ]

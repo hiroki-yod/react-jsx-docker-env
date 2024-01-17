@@ -1,14 +1,20 @@
 [
     {
+        "id": 1,
         "name": "施設1",
-        "address": "住所1"
+        "address": "住所1",
+        "description": "施設説明"
     },
     {
+        "id": 2,
         "name": "施設2",
-        "address": "住所2"
+        "address": "住所2",
+        "description": "施設説明"
     },
     {
+        "id": 3,
         "name": "施設3",
-        "address": "住所3"
+        "address": "住所3",
+        "description": "施設説明"
     }
 ]

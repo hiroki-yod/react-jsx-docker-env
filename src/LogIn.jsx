@@ -11,7 +11,7 @@ function LogIn() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // ログインフォーム送信時
+    // ログインフォーム送信
     const handleLogin = (e) => {
         e.preventDefault();
 

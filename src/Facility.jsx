@@ -15,14 +15,14 @@ function Facility() {
                     <Link
                         to={"/"}
                     >
-                        Topへ
+                        トップへ
                     </Link>
                 </button>
             </>
         );
     }
 
-    // 予約へ進む処理
+    // 予約へ進む
     const handleReservation = (e) => {
         e.preventDefault();
         if (user) {
@@ -39,6 +39,7 @@ function Facility() {
             <h2>施設詳細</h2>
             <p>{facility.name}</p>
             <p>{facility.address}</p>
+            <p>{facility.description}</p>
             <button onClick={handleReservation}>
                 予約
             </button>

@@ -11,6 +11,7 @@ import ReservationCalendar from "./ReservationCalendar";
 import ReservationInput from "./ReservationInput";
 import ReservationConfirm from "./ReservationConfirm";
 
+// マイページボタン
 // eslint-disable-next-line react/prop-types
 function MypageButton({ user }) {
     if (user) {
@@ -45,7 +46,7 @@ export default function App() {
         <div className="App">
             <header className="App-header">
                 <h2>
-                    <a href="/">スカラ市施設予約サイト</a>
+                    <a href="/">スカラ市施設予約デモサイト</a>
                     <MypageButton user={user} />
                 </h2>
                 
