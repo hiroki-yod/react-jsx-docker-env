@@ -10,6 +10,8 @@ import Facility from "./Facility";
 import ReservationCalendar from "./ReservationCalendar";
 import ReservationInput from "./ReservationInput";
 import ReservationConfirm from "./ReservationConfirm";
+import NewsList from "./NewsList";
+import NewsDetail from "./NewsDetail";
 
 // マイページボタン
 // eslint-disable-next-line react/prop-types
@@ -69,6 +71,8 @@ export default function App() {
                     path="/reservation_confirm"
                     element={<ReservationConfirm />}
                 />
+                <Route path="/news_list" element={<NewsList />} />
+                <Route path="/news_detail" element={<NewsDetail />} />
             </Routes>
         </div>
     );

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./css/Home.css";
 import facilities from "./dummies/facilities";
+import news from "./dummies/news";
 
 
 function Home() {
@@ -11,7 +12,6 @@ function Home() {
     const userInfo = ({ user }) => (
         user ? (
             <>
-                <h2>ログイン中</h2>
                 <ul>
                     <li>ID: {user.id}</li>
                     <li>Name: {user.name}</li>
@@ -21,26 +21,52 @@ function Home() {
     );
     const facilityItems = facilities.map((facility, index) => {
         return (
-            <Link
-                to={"/facility"}
-                state={{ facility: facility }}
-                key={facility.id || index}
-            >
-                <ul className="list-item">
-                    <li>{facility.name}</li>
-                    <li>{facility.address}</li>
-                </ul>
-            </Link>
+            <li key={facility.id || index}>
+                <Link
+                    to={"/facility"}
+                    state={{ facility: facility }}
+                >
+                    {facility.name}
+                </Link>
+            </li>
+        );
+    });
+
+    const lastThreeNews = news.slice(0, 3)
+    const newsItems = lastThreeNews.map((newsItem, index) => {
+        return (
+            <li key={newsItem.id || index}>
+                <Link
+                    to={"/news_detail"}
+                    state={{ newsItem: newsItem }}
+                >
+                    <li>{newsItem.title}</li>
+                </Link>
+            </li>
         );
     });
 
     return (
         <>
+            <h2>ログイン中</h2>
             {userInfo({user})}
             <div className="facilities-list">
                 <h2>施設一覧</h2>
-                {facilityItems}
+                <ul className="list-item">
+                    {facilityItems}
+                </ul>
             </div>
+            <div>
+                <h2>最新のお知らせ</h2>
+                <ul className="list-item">
+                    {newsItems}
+                </ul>
+            </div>
+            <Link
+                to={"/news_list"}
+            >
+                お知らせ一覧へ
+            </Link>
         </>
     );
 }

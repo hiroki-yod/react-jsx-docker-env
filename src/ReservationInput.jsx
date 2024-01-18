@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import options from "./dummies/options";
 
 function ReservationInput() {
     const navigate = useNavigate();
     const location = useLocation();
     const facility = location.state && location.state.facility ? location.state.facility : null;
     const frames = location.state && location.state.reservationFrame ? location.state.reservationFrame : null;
+    const facilityOptions = options.filter(option => option.facilityId === facility.id);
     const [selectedFrames, setSelectedFrames] = useState([]);
+    const [optionsCount, setOptionsCount] = useState(
+        facilityOptions.reduce((acc, option) => ({ ...acc, [option.id]: 0 }), {})
+    );
     const [userCount, setUserCount] = useState(1);
     const [isCitizen, setIsCitizen] = useState(false);
     const [ageClass, setAgeClass] = useState("other");
@@ -56,6 +61,26 @@ function ReservationInput() {
             </div>
         )
     );
+    // 備品数入力時
+    const handleOptionsCountChange = (id, value) => {
+        setOptionsCount({ ...optionsCount, [id]: Number(value) });
+    };
+    // 備品フォーム
+    const optionsForm = facilityOptions.map(option => (
+        <>
+            <div key={option.id}>
+                <label>
+                    {option.name} (料金: {option.fee}円):
+                    <input
+                        type="number"
+                        min="0"
+                        value={optionsCount[option.id]}
+                        onChange={(e) => handleOptionsCountChange(option.id, e.target.value)}
+                    />
+                </label>
+            </div>
+        </>
+    ));
     // 人数の入力処理
     const handleUserCountChange = (e) => {
         const count = parseInt(e.target.value, 10);
@@ -77,6 +102,8 @@ function ReservationInput() {
         navigate('/reservation_confirm', { state: {
             facility: facility,
             reservationFrames: selectedFrames,
+            options: facilityOptions,
+            optionsCount: optionsCount,
             userCount: userCount,
             isCitizen: isCitizen,
             ageClass: ageClass
@@ -96,6 +123,11 @@ function ReservationInput() {
                 <label>
                     <h4>時間</h4>
                     {checkboxItems}
+                </label>
+                <br />
+                <label>
+                    <h4>備品</h4>
+                    {optionsForm}
                 </label>
                 <br />
                 <label>

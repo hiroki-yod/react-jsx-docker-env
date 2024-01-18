@@ -23,12 +23,13 @@ function Mypage() {
         );
     }
 
-    // 予約一覧
+    
+    // ユーザーの予約を取得
     const reservations = reservationFrames.filter(reservationFrame =>
         reservationFrame.userId === user.id
     );
+    // 連続する予約をまとめる
     const groupedReservations = reservations.reduce((acc, reservation) => {
-        // 施設を探す
         const facility = facilities.find(f => f.id === reservation.facilityId);
         // キーとして日付と施設名を使用
         const key = `${reservation.datetime.split(' ')[0]}_${facility.name}`;
@@ -39,6 +40,7 @@ function Mypage() {
         acc[key].push(reservation);
         return acc;
     }, {});
+    // 予約一覧
     const reservationItems = Object.values(groupedReservations).map((group) => {
         // グループ内の最初と最後の予約を取得
         const firstReservation = group[0];
@@ -46,10 +48,10 @@ function Mypage() {
 
         const facility = facilities.find(f => f.id === firstReservation.facilityId);
 
-        // lastReservationのdatetimeに1時間加算
+        // lastReservationのdatetimeに1時間加算（利用終了時間）
         const lastDateTime = new Date(lastReservation.datetime);
         lastDateTime.setHours(lastDateTime.getHours() + 9 + 1);  // JSTの9時間 + 1時間加算
-        // 加算した時間をフォーマットする（例: 'YYYY-MM-DD HH:mm'形式）
+        // 加算した時間をフォーマットする（'YYYY-MM-DD HH:mm'形式へ）
         const lastDateTimeFormatted = lastDateTime.toISOString().replace(/T/, ' ').replace(/\..+/, '').substring(0, 16);
 
         return (

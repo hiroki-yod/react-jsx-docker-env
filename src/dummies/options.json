@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "facilityId": 1,
+        "name": "備品1",
+        "fee": 200
+    },
+    {
+        "id": 2,
+        "facilityId": 1,
+        "name": "備品2",
+        "fee": 300
+    },
+    {
+        "id": 3,
+        "facilityId": 2,
+        "name": "備品3",
+        "fee": 100
+    }
+]
